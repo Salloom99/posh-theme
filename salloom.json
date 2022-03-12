@@ -1,0 +1,94 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "path",
+          "style": "powerline",
+          "background": "#0077c2",
+          "foreground": "#ffffff",
+          "powerline_symbol": "<>\ue0b0</>",
+          "properties": {
+            "folder_icon": "\uf115 ",
+            "folder_separator_icon": "<transparent> \ue0b1 </>",
+            "home_icon": "\uf121 ",
+            "style": "agnoster_short",
+            "template": " {{ .Path }} "
+          }
+        },
+        {
+          "type": "python",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#100e23",
+          "background": "#906cff",
+          "properties": {
+            "template": "{{ if .Venv }} \uE235 {{ end }} "
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "background": "#00c853",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#ffeb3b{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#c5e478{{ end }}",
+            "{{ if gt .Ahead 0 }}#C792EA{{ end }}",
+            "{{ if gt .Behind 0 }}#C792EA{{ end }}"
+          ],
+          "foreground": "#011627",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "github_icon": "\uf113  ",
+            "branch_icon": "\ue0a0 ",
+            "commit_icon": "\ue729 ",
+            "tag_icon": "\uf02b ",
+            "fetch_status": true,
+            "fetch_stash_count": true,
+            "fetch_worktree_count": true,
+            "fetch_upstream_icon": true,
+            "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<#ef5350> \uf046 {{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0}} \uf01c ~{{ .StashCount }}{{ end }} "
+          }
+        },
+        {
+          "type": "exit",
+          "style": "powerline",
+          "background": "#910000",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "template": "<#ffffff> \uf12a</> {{ .Meaning }} "
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "exit",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#ff0000{{ end }}"
+          ],
+          "properties": {
+            "always_enabled": true,
+            "template": "\u276f "
+          }
+        }
+      ]
+    }
+  ],
+  "console_title": true,
+  "console_title_style": "template",
+  "console_title_template": "{{if .Root}} \u26a1 {{end}} @ {{.HostName}}",
+  "osc99": true,
+  "version": 1
+}
